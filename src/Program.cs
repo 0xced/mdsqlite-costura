@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Reflection;
 using Microsoft.Data.Sqlite;
 using SQLitePCL;
@@ -14,3 +15,10 @@ var version = command.ExecuteScalar();
 var assembly = typeof(SqliteConnection).Assembly;
 var info = assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion ?? assembly.GetName().Version.ToString();
 Console.WriteLine($"✔️ {assembly.GetName().Name} {info} is working with Costura and {raw.GetNativeLibraryName()} version {version}");
+
+Console.WriteLine();
+Console.WriteLine("Embedded resources");
+foreach (var resourceName in typeof(Program).Assembly.GetManifestResourceNames().OrderBy(e => e))
+{
+    Console.WriteLine($"  📦 {resourceName}");
+}
