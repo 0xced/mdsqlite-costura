@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Costura.Fody" Version="5.7.0" PrivateAssets="all" />
+    <PackageReference Include="Costura.Fody" Version="6.0.0" PrivateAssets="all" />
     <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="9.0.1" />
     <PackageReference Include="SQLitePCLRaw.provider.dynamic_cdecl" Version="2.1.10" />
     <PackageReference Include="SQLitePCLRaw.lib.e_sqlite3" Version="2.1.10" GeneratePathProperty="true" />
@@ -18,12 +18,16 @@
 
   <Target Name="EmbedNativeSQLiteDllWithCostura" BeforeTargets="ResolveAssemblyReferences">
     <ItemGroup>
-      <EmbeddedResource Include="$(PkgSQLitePCLRaw_lib_e_sqlite3)\runtimes\win-x86\native\e_sqlite3.dll">
-        <Link>costura32\e_sqlite3.dll</Link>
+      <EmbeddedResource Include="$(PkgSQLitePCLRaw_lib_e_sqlite3)\runtimes\win-arm64\native\e_sqlite3.dll">
+        <Link>costura-win-arm64\e_sqlite3.dll</Link>
         <Visible>false</Visible>
       </EmbeddedResource>
       <EmbeddedResource Include="$(PkgSQLitePCLRaw_lib_e_sqlite3)\runtimes\win-x64\native\e_sqlite3.dll">
-        <Link>costura64\e_sqlite3.dll</Link>
+        <Link>costura-win-x64\e_sqlite3.dll</Link>
+        <Visible>false</Visible>
+      </EmbeddedResource>
+      <EmbeddedResource Include="$(PkgSQLitePCLRaw_lib_e_sqlite3)\runtimes\win-x86\native\e_sqlite3.dll">
+        <Link>costura-win-x86\e_sqlite3.dll</Link>
         <Visible>false</Visible>
       </EmbeddedResource>
       <Content Remove="@(Content)" Condition="'%(Filename)%(Extension)' == 'e_sqlite3.dll'" />
