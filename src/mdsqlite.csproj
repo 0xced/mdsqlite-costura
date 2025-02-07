@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <OutputType>exe</OutputType>
+    <PlatformTarget>x86</PlatformTarget>
     <TargetFramework>net472</TargetFramework>
     <DebugType>embedded</DebugType>
     <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
@@ -18,14 +19,6 @@
 
   <Target Name="EmbedNativeSQLiteDllWithCostura" BeforeTargets="ResolveAssemblyReferences">
     <ItemGroup>
-      <EmbeddedResource Include="$(PkgSQLitePCLRaw_lib_e_sqlite3)\runtimes\win-arm64\native\e_sqlite3.dll">
-        <Link>costura-win-arm64\e_sqlite3.dll</Link>
-        <Visible>false</Visible>
-      </EmbeddedResource>
-      <EmbeddedResource Include="$(PkgSQLitePCLRaw_lib_e_sqlite3)\runtimes\win-x64\native\e_sqlite3.dll">
-        <Link>costura-win-x64\e_sqlite3.dll</Link>
-        <Visible>false</Visible>
-      </EmbeddedResource>
       <EmbeddedResource Include="$(PkgSQLitePCLRaw_lib_e_sqlite3)\runtimes\win-x86\native\e_sqlite3.dll">
         <Link>costura-win-x86\e_sqlite3.dll</Link>
         <Visible>false</Visible>
